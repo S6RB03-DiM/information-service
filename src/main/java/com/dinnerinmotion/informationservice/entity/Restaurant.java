@@ -11,7 +11,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "restaurants")
+@Table(name = "RestaurantListener")
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
