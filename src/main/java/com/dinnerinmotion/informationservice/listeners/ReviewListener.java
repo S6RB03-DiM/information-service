@@ -1,25 +1,51 @@
 package com.dinnerinmotion.informationservice.listeners;
 
+import com.dinnerinmotion.informationservice.entity.Review;
+import com.dinnerinmotion.informationservice.repository.ReviewRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.messaging.handler.annotation.Header;
-
-import java.util.List;
 
 @Configuration
 @EnableKafka
 public class ReviewListener {
-    private final String groupKafka = "informationService";
+    private final String groupKafka = "informationService-review";
+    ObjectMapper objectMapper = new ObjectMapper();
 
-    /*LISTENER FOR REVIEW CREATE EVENT*/
-    @KafkaListener(id = groupKafka, topics = "dinnerinmotion.review.create")
-    public void createReviewEvent(String message,
-                                  @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List partitions,
-                                  @Header(KafkaHeaders.RECEIVED_TOPIC) List topics,
-                                  @Header(KafkaHeaders.OFFSET) List offsets) {
+    @Autowired
+    private ReviewRepository reviewRepository;
 
-        System.out.printf("%s-%d[%d] \"%s\"\n", topics.get(0), partitions.get(0), offsets.get(0), message);
+    @KafkaListener(id = groupKafka + "-create", topics = "dinnerinmotion.review.create")
+    public void createReviewEvent(String reviewJSONString) throws JsonProcessingException {
+        try {
+            Review reviewIn = objectMapper.readValue(reviewJSONString, Review.class);
+            reviewRepository.save(reviewIn);
+        } catch (Exception e) {
+            System.out.print("Error in Create Review: " + e);
+        }
+    }
+
+    @KafkaListener(id = groupKafka + "-update", topics = "dinnerinmotion.review.update")
+    public void updateReviewEvent(String reviewJSONString) throws JsonProcessingException {
+        try {
+            Review reviewIn = objectMapper.readValue(reviewJSONString, Review.class);
+            reviewRepository.save(reviewIn);
+        } catch (Exception e) {
+            System.out.print("Error in Update Review: " + e);
+        }
+    }
+
+    @KafkaListener(id = groupKafka + "-delete", topics = "dinnerinmotion.review.delete")
+    public void deleteReviewEvent(String reviewJSONString) throws JsonProcessingException {
+        try {
+            Review reviewIn = objectMapper.readValue(reviewJSONString, Review.class);
+            reviewRepository.deleteById(reviewIn.getReviewId());
+        } catch (Exception e) {
+            System.out.print("Error in Delete Review: " + e);
+        }
     }
 }
+

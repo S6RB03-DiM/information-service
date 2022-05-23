@@ -1,5 +1,10 @@
 package com.dinnerinmotion.informationservice.listeners;
 
+import com.dinnerinmotion.informationservice.entity.Restaurant;
+import com.dinnerinmotion.informationservice.repository.RestaurantRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,35 +16,39 @@ import java.util.List;
 @Configuration
 @EnableKafka
 public class RestaurantListener {
-    private final String groupKafka = "informationService";
+    private final String groupKafka = "informationService-restaurant";
+    ObjectMapper objectMapper = new ObjectMapper();
 
-    /*LISTENER FOR RESTAURANTS CREATE EVENT*/
-    @KafkaListener(id = groupKafka, topics = "dinnerinmotion.RestaurantListener.create")
-    public void createRestaurantEvent(String message,
-                                      @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List partitions,
-                                      @Header(KafkaHeaders.RECEIVED_TOPIC) List topics,
-                                      @Header(KafkaHeaders.OFFSET) List offsets) {
+    @Autowired
+    private RestaurantRepository restaurantRepository;
 
-        System.out.printf("%s-%d[%d] \"%s\"\n", topics.get(0), partitions.get(0), offsets.get(0), message);
+    @KafkaListener(id = groupKafka + "-create", topics = "dinnerinmotion.restaurants.create")
+    public void createRestaurantEvent(String restaurantJSONString) throws JsonProcessingException {
+        try {
+            Restaurant restaurantIn = objectMapper.readValue(restaurantJSONString, Restaurant.class);
+            restaurantRepository.save(restaurantIn);
+        } catch (Exception e) {
+            System.out.print("Error in Create Restaurant: " + e);
+        }
     }
 
-    /*LISTENER FOR RESTAURANTS UPDATE EVENT*/
-    @KafkaListener(id = groupKafka, topics = "dinnerinmotion.RestaurantListener.update")
-    public void updateRestaurantEvent(String message,
-                                      @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List partitions,
-                                      @Header(KafkaHeaders.RECEIVED_TOPIC) List topics,
-                                      @Header(KafkaHeaders.OFFSET) List offsets) {
-
-        System.out.printf("%s-%d[%d] \"%s\"\n", topics.get(0), partitions.get(0), offsets.get(0), message);
+    @KafkaListener(id = groupKafka + "-update", topics = "dinnerinmotion.restaurants.update")
+    public void updateRestaurantEvent(String restaurantJSONString) throws JsonProcessingException {
+        try {
+            Restaurant restaurantIn = objectMapper.readValue(restaurantJSONString, Restaurant.class);
+            restaurantRepository.save(restaurantIn);
+        } catch (Exception e) {
+            System.out.print("Error in Update Restaurant: " + e);
+        }
     }
 
-    /*LISTENER FOR RESTAURANTS DELETE EVENT*/
-    @KafkaListener(id = groupKafka, topics = "dinnerinmotion.RestaurantListener.delete")
-    public void deleteRestaurantEvent(String message,
-                                      @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List partitions,
-                                      @Header(KafkaHeaders.RECEIVED_TOPIC) List topics,
-                                      @Header(KafkaHeaders.OFFSET) List offsets) {
-
-        System.out.printf("%s-%d[%d] \"%s\"\n", topics.get(0), partitions.get(0), offsets.get(0), message);
+    @KafkaListener(id = groupKafka + "-delete", topics = "dinnerinmotion.restaurants.delete")
+    public void deleteRestaurantEvent(String restaurantJSONString) throws JsonProcessingException {
+        try {
+            Restaurant restaurantIn = objectMapper.readValue(restaurantJSONString, Restaurant.class);
+            restaurantRepository.deleteById(restaurantIn.getRestaurantId());
+        } catch (Exception e) {
+            System.out.print("Error in Delete Restaurant: " + e);
+        }
     }
 }

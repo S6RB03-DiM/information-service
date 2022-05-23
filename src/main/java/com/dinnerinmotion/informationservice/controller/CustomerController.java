@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/information/customers")
 @Slf4j
@@ -18,7 +20,7 @@ public class CustomerController {
     private CustomersService customersService;
 
     @GetMapping("/{customerId}")
-    public Customer findCustomerById(@PathVariable("customerId") Long customerId) {
+    public Customer findCustomerById(@PathVariable("customerId") UUID customerId) {
         log.info("inside find customer by id method of CustomerController");
         return customersService.findCustomerById(customerId);
     }

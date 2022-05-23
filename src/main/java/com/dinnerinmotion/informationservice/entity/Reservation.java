@@ -14,7 +14,7 @@ import java.util.UUID;
 @Table(name = "reservations")
 public class Reservation {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "BINARY(16)")
     private UUID reservationId;
     private UUID restaurant_id;
     private UUID customer_id;
@@ -25,6 +25,4 @@ public class Reservation {
     private String state; //is array
     private String comment;
     private Boolean single_household;
-
-
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/information/restaurants")
 @Slf4j
@@ -17,7 +19,7 @@ public class RestaurantController {
     private RestaurantService restaurantService;
 
     @GetMapping("/{eventId}")
-    public Restaurant findRestaurantById(@PathVariable("restaurantId") Long restaurantId) {
+    public Restaurant findRestaurantById(@PathVariable("restaurantId") UUID restaurantId) {
         log.info("inside find restaurant by id method of restaurantController");
         return restaurantService.findRestaurantById(restaurantId);
     }

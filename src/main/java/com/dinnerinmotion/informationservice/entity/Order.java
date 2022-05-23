@@ -14,7 +14,7 @@ import java.util.UUID;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "BINARY(16)")
     private UUID orderId;
     private UUID restaurantId;
     private UUID reservationId;
@@ -23,14 +23,4 @@ public class Order {
     private Integer quantity;
     private Double price;
     private OrderState state;
-
-    public Order(UUID restaurantId, UUID reservationId, String dish_identifier, String name, Integer quantity, Double price, OrderState state) {
-        this.restaurantId = restaurantId;
-        this.reservationId = reservationId;
-        this.dish_identifier = dish_identifier;
-        this.name = name;
-        this.quantity = quantity;
-        this.price = price;
-        this.state = state;
-    }
 }

@@ -5,18 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Slf4j
 @Service
 public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public Review saveEvent(Review review) {
-        log.info("inside save review method of reviewService");
-        return reviewRepository.save(review);
-    }
-
-    public Review findEventById(Long reviewId) {
+    public Review findReviewById(UUID reviewId) {
         log.info("inside find review by id method of reviewService");
         return reviewRepository.findByReviewId(reviewId);
     }

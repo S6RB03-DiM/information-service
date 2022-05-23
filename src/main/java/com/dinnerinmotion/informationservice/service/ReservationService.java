@@ -5,18 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Slf4j
 @Service
 public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
 
-    public Reservation saveReservation(Reservation reservation) {
-        log.info("inside save reservation method of ReservationEvent");
-        return reservationRepository.save(reservation);
-    }
-
-    public Reservation findReservationById(Long reservationId) {
+    public Reservation findReservationById(UUID reservationId) {
         log.info("inside find reservation by id method of ReservationEvent");
         return reservationRepository.findByReservationId(reservationId);
     }

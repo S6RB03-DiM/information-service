@@ -11,14 +11,13 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "RestaurantListener")
+@Table(name = "restaurants")
 public class Restaurant {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "BINARY(16)")
     private UUID restaurantId;
     private String name;
     private String address;
     private Integer capacity;
     private int standardOpeningHours;
-
 }

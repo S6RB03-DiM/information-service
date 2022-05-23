@@ -14,15 +14,9 @@ import java.util.UUID;
 @Table(name = "customers")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "BINARY(16)")
     private UUID customerId;
     private String name;
     private String email;
     private String dietaryRestrictions; //should be array
-
-    public Customer(String name, String email, String dietaryRestrictions) {
-        this.name = name;
-        this.email = email;
-        this.dietaryRestrictions = dietaryRestrictions;
-    }
 }

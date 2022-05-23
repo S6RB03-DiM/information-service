@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/information/reviews")
 @Slf4j
@@ -17,13 +19,9 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @GetMapping("/{reviewId}")
-    public Review findReviewById(@PathVariable("reviewId") Long reviewId) {
+    public Review findReviewById(@PathVariable("reviewId") UUID reviewId) {
         log.info("inside find review by id method of ReviewController");
-        return reviewService.findEventById(reviewId);
+        log.info(String.valueOf(reviewId));
+        return reviewService.findReviewById(reviewId);
     }
-
-//    private void createEvent(Event event) {
-//        log.info("inside create event method of EventController");
-//        eventService.saveEvent(event);
-//    }
 }
