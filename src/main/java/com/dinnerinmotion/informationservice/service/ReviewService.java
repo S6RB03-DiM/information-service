@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -13,8 +14,8 @@ public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public Review findReviewById(UUID reviewId) {
+    public Optional<Review> findReviewById(UUID reviewId) {
         log.info("inside find review by id method of reviewService");
-        return reviewRepository.findByReviewId(reviewId);
+        return reviewRepository.findById(reviewId);
     }
 }

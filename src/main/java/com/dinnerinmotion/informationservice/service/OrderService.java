@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -13,8 +14,8 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public Order findOrderById(UUID orderId) {
+    public Optional<Order> findOrderById(UUID orderId) {
         log.info("inside find event by id method of orderService");
-        return orderRepository.findByOrderId(orderId);
+        return orderRepository.findById(orderId);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -20,7 +21,7 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/{orderId}")
-    public Order findOrderById(@PathVariable("orderId") UUID orderId) {
+    public Optional<Order> findOrderById(@PathVariable("orderId") UUID orderId) {
         log.info("inside find order by id method of OrderController");
         return orderService.findOrderById(orderId);
     }

@@ -26,7 +26,7 @@ class InformationServiceApplicationTests {
 				"  \"description\": \"wowsies\"\n" +
 				"}";
 		Review reviewIn = objectMapper.readValue(reviewJSONString, Review.class);
-		assertEquals(reviewIn.getReviewId().toString(),  "5e7e1f40-da91-11ec-9d64-0242ac120002");
+		assertEquals(reviewIn.getId().toString(),  "5e7e1f40-da91-11ec-9d64-0242ac120002");
 	}
 
 }

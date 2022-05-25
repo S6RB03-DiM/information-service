@@ -1,5 +1,6 @@
 package com.dinnerinmotion.informationservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,8 +16,12 @@ import java.util.UUID;
 public class Customer {
     @Id
     @Column(columnDefinition = "BINARY(16)")
-    private UUID customerId;
+    @JsonProperty("id")
+    private UUID id;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("email")
     private String email;
-    private String dietaryRestrictions; //should be array
+    @JsonProperty("dietaryRestrictions")
+    private String dietaryRestrictions;
 }

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -13,8 +14,8 @@ public class CustomersService {
     @Autowired
     private CustomersRepository customersRepository;
 
-    public Customer findCustomerById(UUID customerId) {
+    public Optional<Customer> findCustomerById(UUID id) {
         log.info("inside find customer by id method of customerService");
-        return customersRepository.findByCustomerId(customerId);
+        return customersRepository.findById(id);
     }
 }

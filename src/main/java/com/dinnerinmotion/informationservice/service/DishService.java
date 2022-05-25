@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -13,8 +14,8 @@ public class DishService {
     @Autowired
     private DishRepository dishRepository;
 
-    public Dish findDishById(UUID dishId) {
+    public Optional<Dish> findDishById(UUID dishId) {
         log.info("inside find dish by id method of dishService");
-        return dishRepository.findByDishId(dishId);
+        return dishRepository.findById(dishId);
     }
 }

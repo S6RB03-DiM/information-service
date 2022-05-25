@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -18,8 +19,8 @@ public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
 
-    @GetMapping("/{eventId}")
-    public Restaurant findRestaurantById(@PathVariable("restaurantId") UUID restaurantId) {
+    @GetMapping("/{restaurantId}")
+    public Optional<Restaurant> findRestaurantById(@PathVariable("restaurantId") UUID restaurantId) {
         log.info("inside find restaurant by id method of restaurantController");
         return restaurantService.findRestaurantById(restaurantId);
     }
