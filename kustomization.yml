@@ -1,0 +1,4 @@
+commonLabels:
+  app: dim-infoservice
+resources:
+  - deployment.yaml
