@@ -48,7 +48,7 @@ jobs:
       with:
         token_format: 'access_token'
         workload_identity_provider: 'projects/205782411157/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-        service_account: ${{ secrets.GKE_PROJECT }}
+        service_account: ${{ secrets.GKE_SA_EMAIL }}
 
     # Alternative option - authentication via credentials json
     # - id: 'auth'
