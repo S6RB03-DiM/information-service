@@ -25,7 +25,7 @@ env:
   GKE_ZONE: europe-west1-b
   DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
   REPOSITORY: information-service # TODO: update to Artifact Registry docker repository
-  IMAGE: dinnerinmotion/information-service
+  IMAGE: information-service
 
 jobs:
   setup-build-publish-deploy:
@@ -48,7 +48,7 @@ jobs:
       with:
         token_format: 'access_token'
         workload_identity_provider: 'projects/205782411157/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-        service_account: 'dim-541@dinnerinmotion-s6-db03g1.iam.gserviceaccount.com '
+        service_account: ${{ secrets.GKE_PROJECT }}
 
     # Alternative option - authentication via credentials json
     # - id: 'auth'
