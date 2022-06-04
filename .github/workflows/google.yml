@@ -23,8 +23,8 @@ env:
   GAR_LOCATION: europe-west1
   GKE_CLUSTER: dim-cluster
   GKE_ZONE: europe-west1-b
-  DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
-  REPOSITORY: information-service # TODO: update to Artifact Registry docker repository
+  DEPLOYMENT_NAME: information-service 
+  REPOSITORY: information-service 
   IMAGE: information-service
 
 jobs:
