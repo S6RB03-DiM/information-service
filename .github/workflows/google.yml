@@ -42,7 +42,7 @@ jobs:
       uses: actions/checkout@v3
 
       # Setup gcloud CLI
-    - uses: google-github-actions/setup-gcloud@bb4a7e19a78ceff2215c217d2b78d2426a02fe23
+    - uses: google-github-actions/setup-gcloud@v0
       with:
         service_account_key: ${{ secrets.GKE_SA_KEY }}
         project_id: ${{ secrets.GKE_PROJECT }}
