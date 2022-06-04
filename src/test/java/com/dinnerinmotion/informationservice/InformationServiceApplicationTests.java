@@ -16,17 +16,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class InformationServiceApplicationTests {
 	ObjectMapper objectMapper = new ObjectMapper();
 
-	@Test
-	void reviewJSONStringConvertsToEntity() throws JsonProcessingException {
-		String reviewJSONString = "{\n" +
-				"  \"reviewId\": \"5e7e1f40-da91-11ec-9d64-0242ac120002\",\n" +
-				"  \"restaurant_id\": \"31e24732-da8b-11ec-9d64-0242ac120002\",\n" +
-				"  \"customer_id\": \"45aa1ff6-da8b-11ec-9d64-0242ac120002\",\n" +
-				"  \"rating\": \"5\",\n" +
-				"  \"description\": \"wowsies\"\n" +
-				"}";
-		Review reviewIn = objectMapper.readValue(reviewJSONString, Review.class);
-		assertEquals(reviewIn.getId().toString(),  "5e7e1f40-da91-11ec-9d64-0242ac120002");
-	}
+//	@Test
+//	void reviewJSONStringConvertsToEntity() throws JsonProcessingException {
+//		String reviewJSONString = "{\n" +
+//				"  \"reviewId\": \"5e7e1f40-da91-11ec-9d64-0242ac120002\",\n" +
+//				"  \"restaurant_id\": \"31e24732-da8b-11ec-9d64-0242ac120002\",\n" +
+//				"  \"customer_id\": \"45aa1ff6-da8b-11ec-9d64-0242ac120002\",\n" +
+//				"  \"rating\": \"5\",\n" +
+//				"  \"description\": \"wowsies\"\n" +
+//				"}";
+//		Review reviewIn = objectMapper.readValue(reviewJSONString, Review.class);
+//		assertEquals(reviewIn.getId().toString(),  "5e7e1f40-da91-11ec-9d64-0242ac120002");
+//	}
 
 }
