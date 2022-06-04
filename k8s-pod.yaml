@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: information-service
-spec:
-  containers:
-    - name: inforservice
-      image: information-service
