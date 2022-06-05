@@ -14,7 +14,12 @@ spec:
     spec:
       containers:
         - name: information-service
-          image: information-service # Image that will be used to containers in the cluster
+          image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG # Image that will be used to containers in the cluster
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3307 # The port that the container is running on in the cluster
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 100m
