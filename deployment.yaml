@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: information-service
-          image: dinnerinmotion/information-service # Image that will be used to containers in the cluster
+          image: information-service # Image that will be used to containers in the cluster
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3307 # The port that the container is running on in the cluster
