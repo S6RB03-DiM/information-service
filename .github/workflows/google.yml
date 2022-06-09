@@ -55,6 +55,7 @@ jobs:
         sarif_file: snyk.sarif
         
   setup-build-publish-deploy:
+    needs: snyk
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
     environment: production
@@ -122,3 +123,5 @@ jobs:
        ./kustomize build . | kubectl apply -f -
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
+        
+
