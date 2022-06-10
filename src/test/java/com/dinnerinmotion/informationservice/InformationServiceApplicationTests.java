@@ -5,15 +5,21 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+@AutoConfigureDataJpa
+@AutoConfigureTestDatabase
 class InformationServiceApplicationTests {
+
 	ObjectMapper objectMapper = new ObjectMapper();
 
 	@Test
@@ -24,8 +30,8 @@ class InformationServiceApplicationTests {
 				"  \"email\": \"45aa1ff6-da8b-11ec-9d64-0242ac120002\",\n" +
 				"  \"dietaryRestrictions\": \"none\"\n" +
 				"}";
-		Customer reviewIn = objectMapper.readValue(customerJSONString, Customer.class);
-		assertEquals(reviewIn.getId().toString(),  "5e7e1f40-da91-11ec-9d64-0242ac120002");
+		Customer customerIn = objectMapper.readValue(customerJSONString, Customer.class);
+		assertEquals(customerIn.getId().toString(),  "5e7e1f40-da91-11ec-9d64-0242ac120002");
 	}
 
 	@Test
@@ -71,8 +77,8 @@ class InformationServiceApplicationTests {
 				"  \"comment\": \"none\",\n" +
 				"  \"single_household\": \"false\"\n" +
 				"}";
-		Reservation reviewIn = objectMapper.readValue(reservationJSONString, Reservation.class);
-		assertEquals(reviewIn.getId().toString(),  "5e7e1f40-da91-11ec-9d64-0242ac120002");
+		Reservation reservationIn = objectMapper.readValue(reservationJSONString, Reservation.class);
+		assertEquals(reservationIn.getId().toString(),  "5e7e1f40-da91-11ec-9d64-0242ac120002");
 	}
 
 	@Test
@@ -84,8 +90,8 @@ class InformationServiceApplicationTests {
 				"  \"capacity\": \"5\",\n" +
 				"  \"standardOpeningHours\": \"12:00-19:00\"\n" +
 				"}";
-		Restaurant reviewIn = objectMapper.readValue(restaurantJSONString, Restaurant.class);
-		assertEquals(reviewIn.getId().toString(),  "5e7e1f40-da91-11ec-9d64-0242ac120002");
+		Restaurant restaurantIn = objectMapper.readValue(restaurantJSONString, Restaurant.class);
+		assertEquals(restaurantIn.getId().toString(),  "5e7e1f40-da91-11ec-9d64-0242ac120002");
 	}
 
 	@Test
