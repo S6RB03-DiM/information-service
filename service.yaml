@@ -9,4 +9,4 @@ spec:
     - protocol: "TCP"
       port: 3307 # The port that the service is running on in the cluster
       targetPort: 3007 # The port exposed by the service
-  type: gateway # type of the service.
+  type: LoadBalancer # type of the service.
