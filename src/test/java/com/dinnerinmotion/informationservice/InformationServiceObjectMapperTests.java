@@ -1,6 +1,8 @@
 package com.dinnerinmotion.informationservice;
 
 import com.dinnerinmotion.informationservice.entity.*;
+import com.dinnerinmotion.informationservice.repository.ReviewRepository;
+import com.dinnerinmotion.informationservice.service.ReviewService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -9,6 +11,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -106,5 +111,7 @@ class InformationServiceObjectMapperTests {
 		assertEquals(reviewIn.getId().toString(),  "5e7e1f40-da91-11ec-9d64-0242ac120002");
 	}
 
-
+	@Test
+	void contextLoads() {
+	}
 }
