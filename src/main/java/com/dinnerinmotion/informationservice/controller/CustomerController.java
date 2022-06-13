@@ -25,4 +25,9 @@ public class CustomerController {
         log.info("inside find customer by id method of CustomerController");
         return customersService.findCustomerById(customerId);
     }
+
+    @GetMapping(value="test")
+    public String getAccountsByEmpId() {
+        return "hello world";
+    }
 }
