@@ -26,8 +26,4 @@ public class CustomerController {
         return customersService.findCustomerById(customerId);
     }
 
-    @GetMapping(value="test")
-    public String getAccountsByEmpId() {
-        return "hello world";
-    }
 }
